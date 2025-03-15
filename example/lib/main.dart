@@ -30,14 +30,6 @@ class _IconTestScreenState extends State<IconTestScreen> {
   final IconsCatalog _catalog = IconsCatalog();
   IconData _selectedIcon = Icons.star;
 
-  void _changeIcon() {
-    // Get a random icon from the catalog
-    final icons = _catalog.getIconDataList();
-    setState(() {
-      _selectedIcon = icons[DateTime.now().millisecond % icons.length];
-    });
-  }
-
   void _showIconPicker() {
     showModalBottomSheet(
       context: context,
@@ -98,10 +90,6 @@ class _IconTestScreenState extends State<IconTestScreen> {
             ),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _changeIcon,
-        child: const Icon(Icons.refresh),
       ),
     );
   }
