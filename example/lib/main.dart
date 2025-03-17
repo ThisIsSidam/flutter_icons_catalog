@@ -31,18 +31,19 @@ class _IconTestScreenState extends State<IconTestScreen> {
   IconData _selectedIcon = Icons.star;
 
   void _showIconPicker() {
+    final List<IconData> icons =
+        _catalog.getIconDataList(includeVariants: false);
     showModalBottomSheet(
       context: context,
       builder: (context) => Container(
-        height: MediaQuery.of(context).size.height * 0.6,
-        padding: const EdgeInsets.all(16),
-        child: SingleChildScrollView(
-          child: Wrap(
-            spacing: 16,
-            runSpacing: 16,
-            children: _catalog
-                .getIconDataList(includeVariants: false)
-                .map((IconData icon) {
+          height: MediaQuery.of(context).size.height * 0.6,
+          padding: const EdgeInsets.all(16),
+          child: GridView.builder(
+            gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+              maxCrossAxisExtent: 50,
+            ),
+            itemBuilder: (context, index) {
+              final IconData icon = icons[index];
               return InkWell(
                 onTap: () {
                   setState(() => _selectedIcon = icon);
@@ -50,10 +51,8 @@ class _IconTestScreenState extends State<IconTestScreen> {
                 },
                 child: Icon(icon, size: 32),
               );
-            }).toList(),
-          ),
-        ),
-      ),
+            },
+          )),
     );
   }
 
