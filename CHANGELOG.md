@@ -1,3 +1,3 @@
 ## 0.0.1
 
-* TODO: Describe initial release.
+* IconsCatalog class with methods for icon-string conversions and icon list fetch.
